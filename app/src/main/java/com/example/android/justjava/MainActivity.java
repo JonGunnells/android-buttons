@@ -10,7 +10,7 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    int numberOfCoffees =2;
+    int quantity =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,25 +21,34 @@ public class MainActivity extends AppCompatActivity {
     public void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+
     }
 
     public void increment(View view){
-        numberOfCoffees = numberOfCoffees + 1;
-        display(numberOfCoffees);
+        quantity = quantity + 1;
+        display(quantity);
     }
 
     public void submitOrder(View view) {
-
+        int price = quantity *5;
+        String priceMessage = "Total: $" + price;
+        priceMessage = priceMessage + " \n ThankYou!";
+        displayMessage(priceMessage);
     }
 
     public void decrement(View view){
-        numberOfCoffees = numberOfCoffees - 1;
-        display(numberOfCoffees);
+        quantity = quantity - 1;
+        display(quantity);
     }
 
 
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+    }
+
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 }
